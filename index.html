@@ -3,12 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pupu - Pet Adoption Platform
+    </title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .active{
+        background-color: #04091c;
+        color: white;
+        border-radius: 100px;
+      }
+    </style>
 
 </head>
 <body>
-    
+    <header>
+        <!-- Nav bar section -->
+        <nav class="mx-4 lg:mx-[120px]">
+            <div class="navbar bg-base-100 lato_font pt-4 lg:pt-8 pb-6 lg:pb-12">
+                <div class="navbar-start">
+                  <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M4 6h16M4 12h8m-8 6h16" />
+                      </svg>
+                    </div>
+                    <ul
+                      tabindex="0"
+                      class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                      <li><a>Home</a></li>
+                    <li><a>Shop</a></li>
+                    <li><a>Contact</a></li>
+                    </ul>
+                  </div>
+                  
+                  <a class="btn btn-ghost text-[32px] lato_font font-black pl-3 hover: ">
+                    <div class="flex items-center gap-2">
+                        <img src="images/logo.webp" alt="" srcset="">
+                        <p>PuPu</p>
+                    </div>
+                    </a>
+                </div>
+                <div class="navbar-center hidden lg:flex lg:gap-8">
+                  <ul class="menu lg:flex lg:gap-6 menu-horizontal px-1 text-base font-normal text-[#131313]">
+                    <li><a>Home</a></li>
+                    <li><a>Shop</a></li>
+                    <li><a>Contact</a></li>
+                </ul>
+                </div>
+                <div class="navbar-end">
+                    <div class="p-4 border-2 border-[#0E7A8133] rounded-full"><svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </g>
+                    </svg></div>
+                </div>
+              </div>
+        </nav>
+        <!-- Header section -->
+         <section class="mx-4 lg:mx-[120px]">
+            <div class="lato_font w-full mx-auto lg:w-[750px] text-center">
+                <h5 class="text-base text-[#13131399] font-semibold text-center">Bringing Families Together ❤️‍🔥 </h5>
+                <h1 class="text-4xl lg:text-6xl text-[#131313] font-black text-center my-4 lg:my-6">Your Path to Adoption Starts Here</h1>
+                <p class="text-sm lg:text-base text-[#131313] font-normal text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+                <button class="bg-[#0E7A81] text-[20px] text-white font-medium px-5 py-4 rounded-xl mt-5 lg:mt-6 mb-5 lg:mb-8" type="button">View More</button>
+                <img src="images/pet.webp" alt="" srcset="">
+
+            </div>
+            <!-- Category section -->
+             <div>
+                <!-- category title  -->
+                <div class="lato_font w-full mx-auto lg:w-[750px] text-center py-6 lg:py-12">
+                     <h1 class="text-5xl text-[#131313] font-black pb-4 lg:pb-6">Adopt  Your  Best Friend</h1>
+                     <p class="text-base text-[#131313B2] font-normal">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+                 </div>
+                 <!-- category Button -->
+                    <div id="category" class="grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between"></div>
+             </div>
+         </section>
+    </header>
+    <main>
+        <section class="mx-4 lg:mx-[120px] flex py-8">
+
+        </section>
+        <section class="mx-4 lg:mx-[120px] flex gap-6 flex-col lg:flex-row">
+            <!-- Pet card -->
+            <div id="pet_card" class="lg:w-[75%] grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+            </div>
+            <!-- pet like -->
+             <div class=" lg:w-[25%]  border rounded-2xl p-[20px]"><h1></h1></div>
+        </section>
+
+        <!-- Open the modal using ID.showModal() method -->
+              <button id="modalShow" class="btn hidden" onclick="my_modal_5.showModal()">open modal</button>
+              <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                  <div id="displayModal">
+
+                  </div>
+                  <div class="modal-action">
+                    <form method="dialog">
+                      <!-- if there is a button in form, it will close the modal -->
+                      <button  class="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+    </main>
+    <footer>
+        
+    </footer>
+
+    <script src="js/index.js"></script>
 </body>
 </html>
