@@ -77,12 +77,12 @@
                 <h5 class="text-base text-[#13131399] font-semibold text-center">Bringing Families Together ❤️‍🔥 </h5>
                 <h1 class="text-4xl lg:text-6xl text-[#131313] font-black text-center my-4 lg:my-6">Your Path to Adoption Starts Here</h1>
                 <p class="text-sm lg:text-base text-[#131313] font-normal text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-                <button class="bg-[#0E7A81] text-[20px] text-white font-medium px-5 py-4 rounded-xl mt-5 lg:mt-6 mb-5 lg:mb-8" type="button">View More</button>
+                <button id="" onClick="scrollToPage()" class="bg-[#0E7A81] text-[20px] text-white font-medium px-5 py-4 rounded-xl mt-5 lg:mt-6 mb-5 lg:mb-8" type="button">View More</button>
                 <img src="images/pet.webp" alt="" srcset="">
 
             </div>
             <!-- Category section -->
-             <div>
+             <div id="main-page">
                 <!-- category title  -->
                 <div class="lato_font w-full mx-auto lg:w-[750px] text-center py-6 lg:py-12">
                      <h1 class="text-5xl text-[#131313] font-black pb-4 lg:pb-6">Adopt  Your  Best Friend</h1>
@@ -107,16 +107,16 @@
         </section>
 
         <!-- Open the modal using ID.showModal() method -->
-              <button id="modalShow" class="btn hidden" onclick="my_modal_5.showModal()">open modal</button>
+              <button id="modalShow" class="btn hidden " onclick="my_modal_5.showModal()">open modal</button>
               <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
                   <div id="displayModal">
 
                   </div>
-                  <div class="modal-action">
+                  <div class="modal-action !block">
                     <form method="dialog">
                       <!-- if there is a button in form, it will close the modal -->
-                      <button  class="btn">Close</button>
+                      <button  class="w-full btn text-lg text-[#0E7A81] bg-[#0E7A811A]">Close</button>
                     </form>
                   </div>
                 </div>

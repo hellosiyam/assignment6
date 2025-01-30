@@ -1,3 +1,11 @@
+// View page 
+const scrollToPage = () => {
+    const main_page = document.getElementById('main-page');
+    main_page.scrollIntoView({
+        behavior: "smooth"
+    })
+}
+
 // Load pet category
 const loadPetCategory = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/categories');
@@ -101,7 +109,6 @@ const displayPetDetail = (petCard) => {
             </div>
     </div>
     `
-    
     document.getElementById('modalShow').click()
     
 }
