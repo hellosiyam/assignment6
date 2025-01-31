@@ -62,6 +62,19 @@ const petDetail = async (id) => {
     displayPetDetail(data.petData);
     
 }
+// Like Pet
+const likePet = (like) => {
+    console.log(like);
+    
+    const likePetContainer = document.getElementById('like-pet');
+    const likePet = document.createElement('div')
+    likePet.innerHTML = `
+            <img class= 'w-full rounded-lg' src=${like}/>
+    `
+    likePetContainer.appendChild(likePet);
+    
+}
+
 // Display pet Detail
 const displayPetDetail = (petCard) => {
     console.log(petCard);
@@ -167,7 +180,7 @@ const displayAllPets = (categories) => {
                 </div>
             </div>
             <div class = 'flex justify-between pt-4'>
-            <button class="px-4 py-2 border-2 rounded-xl border-[#0E7A8126] text-base text-[#0E7A81] font-semibold"><img src="images/like.svg"/></button>
+            <button onclick="likePet('${item.image}')" class="px-4 py-2 border-2 rounded-xl border-[#0E7A8126] text-base text-[#0E7A81] font-semibold"><img src="images/like.svg"/></button>
             <button class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold">Adopt</button>
             <button onclick="petDetail('${item.petId}')" class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold">Details</button>
             </div>
