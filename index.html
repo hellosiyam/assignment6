@@ -15,10 +15,12 @@
         border-radius: 100px;
       }
     </style>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    
 
 </head>
 <body>
-    <header>
+    <header >
         <!-- Nav bar section -->
         <nav class="mx-4 lg:mx-[120px]">
             <div class="navbar bg-base-100 lato_font pt-4 lg:pt-8 pb-6 lg:pb-12">
@@ -97,13 +99,21 @@
         <section class="mx-4 lg:mx-[120px] flex py-8">
 
         </section>
+        
         <section class="mx-4 lg:mx-[120px] flex gap-6 flex-col lg:flex-row">
             <!-- Pet card -->
-            <div id="pet_card" class="lg:w-[75%] grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
+            <div  class="lg:w-[75%] ">
+              <div id="pet_card" class="grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
+              <!-- Spinner -->
+              <div id="spinnerContainer" class="hidden flex justify-center items-center pt-10  border rounded-2xl p-4 min-h-screen">
+                <span class="loading loading-ring loading-xs"></span>
+                <span class="loading loading-ring loading-sm"></span>
+                <span class="loading loading-ring loading-md"></span>
+                <span class="loading loading-ring loading-lg"></span>
+            </div>
             </div>
             <!-- pet like -->
-             <div  class=" lg:w-[25%]  border rounded-2xl p-[20px] ">
+             <div  class=" lg:w-[25%]  border rounded-2xl p-4 ">
               <div id="like-pet" class="grid grid-cols-2 gap-2"></div>
              </div>
         </section>
@@ -123,6 +133,29 @@
                   </div>
                 </div>
               </dialog>
+
+              <!-- Adopt Modals -->
+              <!-- <div class="bg-black opacity-20 fixed w-full h-full top-0 z-[9999] blur"></div> -->
+               <!-- Open the modal using ID.showModal() method -->
+               <div id="modalBackdrop" class="fixed inset-0 hidden bg-black opacity-70 z-[999999998]"></div>
+              <div id="adoptContent" class="bg-white  lg:p-14 hidden fixed z-[999999999] top-1/2  -translate-y-1/2 -translate-x-1/2 left-1/2 rounded-xl">
+                <!-- <button id=""  class="btn hidden" onclick="my_modal_2.showModal()">open modal</button> -->
+              <!-- <dialog id="my_modal_2" class="modal">
+                <div class="modal-box">
+                  <div id="adoptModal">
+                    <div class= ' flex flex-col gap-4 text-center items-center justify-center'>
+                    <img src = 'https://img.icons8.com/?size=100&id=TGGyAyBJKGRc&format=png&color=000000'/>
+                    <h1 class="text-2xl text-[#131313] font-bold">Congrats</h1>
+                    <p class="text-base text-black font-normal">Adoption Process is Start For your Pet</p>
+                    <h1 id="interval" class="text-4xl font-bold">3</h1>
+                    </div>
+                  </div>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog> -->
+              </div>
     </main>
     <footer>
         

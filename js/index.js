@@ -5,6 +5,18 @@ const scrollToPage = () => {
         behavior: "smooth"
     })
 }
+// Spine Category
+const spineCategory = () => {
+    const spinnerContainer = document.getElementById('spinnerContainer');
+    const petCard = document.getElementById('pet_card')
+    spinnerContainer.classList.remove('hidden');
+    petCard.classList.add('hidden');
+    setTimeout(() =>{
+        spinnerContainer.classList.add('hidden')
+        petCard.classList.remove('hidden');
+    }, 2000)
+}
+
 
 // Load pet category
 const loadPetCategory = async () => {
@@ -26,21 +38,26 @@ const displayPetCategory = (categories) => {
     const petCategoryContainer = document.getElementById('category');
     categories.forEach(item => {
         // console.log(item);
-        
+
         // Create Container
         const categoryContainer = document.createElement('div');
         categoryContainer.innerHTML =`
-        <button id= "btn-${item.category}" onClick="loadCategoryData('${item.category}')"  class="w-full h-16 btn btn-outline category-btn"><img class='h-8 w-8' src= ${item.category_icon}/> ${item.category}</button>
+        <button id="btn-${item.category}" onClick="loadCategoryData('${item.category}')"  class="w-full h-16 btn btn-outline category-btn"><img class='h-8 w-8' src= ${item.category_icon}/> ${item.category}</button>
 
         `
         petCategoryContainer.appendChild(categoryContainer)
     });
-}
+};
 // Lode Category wise
 const loadCategoryData = async (item) => {
+    
+    spineCategory()
+
     removeActive()
+
     const activeBtn = document.getElementById(`btn-${item}`)
     activeBtn.classList.add('active')
+
     const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${item}`);
     const petDataCollection = await res.json();
     displayAllPets(petDataCollection.data);
@@ -60,11 +77,12 @@ const petDetail = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
     const data = await res.json();
     displayPetDetail(data.petData);
+    adoptPet(data);
     
 }
 // Like Pet
 const likePet = (like) => {
-    console.log(like);
+    // console.log(like);
     
     const likePetContainer = document.getElementById('like-pet');
     const likePet = document.createElement('div')
@@ -75,9 +93,75 @@ const likePet = (like) => {
     
 }
 
+// Adopt Pet
+const petAdopt = (id) => {
+// console.log(id, 'id')
+    const adoptModal = document.getElementById('adoptContent');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const classNames = Array.from(adoptModal.classList);
+    document.getElementById(`btn${id}`).setAttribute('disabled', true)
+    if(classNames.includes('hidden')){
+        adoptModal.classList.remove('hidden')
+        modalBackdrop.classList.remove('hidden')
+    }
+    adoptModal.innerHTML=`
+    <div class= ' flex flex-col gap-4 text-center items-center justify-center'>
+                    <img src = 'https://img.icons8.com/?size=100&id=TGGyAyBJKGRc&format=png&color=000000'/>
+                    <h1 class="text-2xl text-[#131313] font-bold">Congrats</h1>
+                    <p class="text-base text-black font-normal">Adoption Process is Start For your Pet</p>
+                    <h1 id="interval" class="text-4xl font-bold">3</h1>
+                    </div>
+    `
+    // console.log(adoptModal);
+    
+    // document.getElementById('adoptModalBtn').click()
+    comedown();
+    adoptContentHide()
+}
+// ComeDown Timer
+
+const comedown = () => {
+    const timerSection = document.getElementById('interval')
+    let timer = 3;
+    const adoptTime = setInterval(()=>{
+        timer -- ;
+        timerSection.innerText = `${timer}`
+
+        if (timer === 1 ) {
+            clearInterval(adoptTime)
+        }
+    },1000);
+    
+}
+
+{/* <dialog id="my_modal_2" class="modal">
+                <div class="modal-box">
+                  <div id="adoptModal">
+                    <div class= ' flex flex-col gap-4 text-center items-center justify-center'>
+                    <img src = 'https://img.icons8.com/?size=100&id=TGGyAyBJKGRc&format=png&color=000000'/>
+                    <h1 class="text-2xl text-[#131313] font-bold">Congrats</h1>
+                    <p class="text-base text-black font-normal">Adoption Process is Start For your Pet</p>
+                    <h1 id="interval" class="text-4xl font-bold">3</h1>
+                    </div>
+                  </div>
+                </div>
+                <!-- <form method="dialog" class="modal-backdrop">
+                  <button>close</button>
+                </form> -->
+              </dialog> */}
+// Adopt content hidden
+const adoptContentHide = () => {
+    const  adopt = document.getElementById('adoptContent');
+    const  modalBackdrop = document.getElementById('modalBackdrop');
+    setTimeout(() => {
+        adopt.classList.add('hidden')
+        modalBackdrop.classList.add('hidden')
+    }, 3000)
+}
+
 // Display pet Detail
 const displayPetDetail = (petCard) => {
-    console.log(petCard);
+    // console.log(petCard);
     const showModal = document.getElementById('displayModal');
     showModal.innerHTML =`
     <div>
@@ -146,7 +230,7 @@ const displayAllPets = (categories) => {
         petContainer.classList.add('grid')
     }
     categories.forEach(item => {
-        console.log(item); 
+        // console.log(item); 
 
         // Pet-Card
         const petCard = document.createElement('div');
@@ -179,10 +263,11 @@ const displayAllPets = (categories) => {
                     <p class= 'text-base text-[#131313B2] font-normal'>Price: ${item.price? item.price : 'Not Available'}</p>
                 </div>
             </div>
+            
             <div class = 'flex justify-between pt-4'>
             <button onclick="likePet('${item.image}')" class="px-4 py-2 border-2 rounded-xl border-[#0E7A8126] text-base text-[#0E7A81] font-semibold"><img src="images/like.svg"/></button>
-            <button class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold">Adopt</button>
-            <button onclick="petDetail('${item.petId}')" class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold">Details</button>
+            <button id="btn${item.petId}" onclick =" petAdopt('${item.petId}')" class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold disabled:cursor-not-allowed disabled:opacity-50">Adopt</button>
+            <button  onclick="petDetail('${item.petId}')" class="border-2 rounded-xl border-[#0E7A8126] py-2 px-5 text-base text-[#0E7A81] font-semibold">Details</button>
             </div>
         </div>
         `
