@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme ="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
       }
     </style>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-    
+    <link rel="shortcut icon" href="images/logo.webp" type="image/x-icon">
 
 </head>
 <body>
@@ -49,7 +49,7 @@
                     </ul>
                   </div>
                   
-                  <a class="btn btn-ghost text-[32px] lato_font font-black pl-3 hover: ">
+                  <a onclick="reloadPage()" class="btn btn-ghost text-[32px]  lato_font font-black pl-3 hover: ">
                     <div class="flex items-center gap-2">
                         <img src="images/logo.webp" alt="" srcset="">
                         <p>PuPu</p>
@@ -96,8 +96,11 @@
          </section>
     </header>
     <main>
-        <section class="mx-4 lg:mx-[120px] flex py-8">
-
+        <section >
+            <div class="mx-4 lg:mx-[120px] flex justify-between items-center py-8">
+              <h1 class="text-2xl text-[#131313] font-extrabold lato_font">Best Deal For you</h1>
+              <button id="sortPrice" onclick="sort('desc')" type="button" class="text-xl text-white bg-[#0E7A81] py-4 px-8 rounded-2xl">Sort by Price</button>
+            </div>
         </section>
         
         <section class="mx-4 lg:mx-[120px] flex gap-6 flex-col lg:flex-row">
@@ -157,8 +160,47 @@
               </dialog> -->
               </div>
     </main>
-    <footer>
-        
+    <footer class="p-6 lg:px-[140px] lg:py-[100px] bg-[#131313] flex flex-col lg:flex-row gap-10 justify-between mt-8 lg:mt-20">
+      <div class="flex flex-col gap-4 lg:gap-8">
+        <div class="flex gap-3 items-center">
+          <img src="images/logo.webp" alt="" srcset="">
+          <h1 class="text-3xl text-white lato_font font-extrabold">PuPu</h1>
+        </div>
+        <div class="flex flex-col gap-2">
+          <p class=" text-base text-[#FFFFFFE6]">Location: av. Washington 165, NY CA 54003</p>
+          <p class=" text-base text-[#FFFFFFE6]">Phone: +31 85 964 47 25</p>
+          <p class=" text-base text-[#FFFFFFE6]">Email: info@yourdomain.com</p>
+          <p class=" text-base text-[#FFFFFFE6]">Openings hours: 9.00 AM - 5.00 PM</p>
+        </div>
+        <div class="flex gap-6">
+          <img src="images/fb.svg" alt="" srcset="">
+          <img src="images/x.svg" alt="" srcset="">
+          <img src="images/yt.svg" alt="" srcset="">
+          <img src="images/instagram.svg" alt="" srcset="">
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 lg:gap-8">
+        <div class="text-lg text-[#FFFFFFE5] font-bold">
+          <h1>Useful Links</h1>
+        </div>
+        <div class="text-base text-[#FFFFFF99] flex flex-col gap-3">
+          <p>Home</p>
+          <p>About Us</p>
+          <p>Animals</p>
+          <p>Foundation</p>
+          <p>Contact</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 lg:gap-8">
+        <div class="text-lg text-[#FFFFFFE5] font-bold">
+          <h1>Drop a Message</h1>
+        </div>
+        <div class="flex flex-col gap-4">
+          <input class="bg-[#FFFFFF0D] py-4 pl-4 pr-[100px] rounded-xl" type="email" name="" id="" placeholder="Enter your email">
+          <button class="text-xl text-white font-bold bg-[#0E7A81] py-[13px] px-[76px] rounded-xl" type="button">Subscribe</button>
+        </div>
+      </div>
+
     </footer>
 
     <script src="js/index.js"></script>

@@ -1,3 +1,7 @@
+// Reload page
+const reloadPage = () => {
+    location.reload()
+}
 // View page 
 const scrollToPage = () => {
     const main_page = document.getElementById('main-page');
@@ -22,8 +26,9 @@ const spineCategory = () => {
 const loadPetCategory = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/categories');
     const data = await res.json();
-    displayPetCategory(data.categories);
+   displayPetCategory( data.categories)
 }
+loadPetCategory()
 
 // Remove btn color:
 const removeActive = () => {
@@ -42,7 +47,7 @@ const displayPetCategory = (categories) => {
         // Create Container
         const categoryContainer = document.createElement('div');
         categoryContainer.innerHTML =`
-        <button id="btn-${item.category}" onClick="loadCategoryData('${item.category}')"  class="w-full h-16 btn btn-outline category-btn"><img class='h-8 w-8' src= ${item.category_icon}/> ${item.category}</button>
+        <button id="btn-${item.category}" onClick="sort('asc','${item.category}')"  class="w-full h-16 btn btn-outline category-btn"><img class='h-8 w-8' src= ${item.category_icon}/> ${item.category}</button>
 
         `
         petCategoryContainer.appendChild(categoryContainer)
@@ -56,11 +61,11 @@ const loadCategoryData = async (item) => {
     removeActive()
 
     const activeBtn = document.getElementById(`btn-${item}`)
-    activeBtn.classList.add('active')
+    activeBtn?.classList?.add('active')
 
     const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${item}`);
     const petDataCollection = await res.json();
-    displayAllPets(petDataCollection.data);
+    return petDataCollection.data;
 }
 
 
@@ -68,9 +73,35 @@ const loadCategoryData = async (item) => {
 const lodePets = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
     const data = await res.json();
-    displayAllPets(data.pets);
+    return data?.pets
     
 }
+
+// price sorting
+const sort = async (sortOrder = 'asc', catId) => {
+    const catData=await loadCategoryData(catId)
+    const petData = catData.length===0&&await lodePets(); 
+    const data=catData.length>0?catData:petData
+console.log(data)
+    const sortedByPriceAsc = [...data].sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+    const sortedByPriceDesc = [...data].sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+
+    displayAllPets(sortOrder === 'asc' ? sortedByPriceAsc : sortedByPriceDesc);
+};
+
+
+// Sort pet price
+// const sortPrice = (petsPrice) => {
+//     const totalPrice = []
+//     petsPrice.forEach((price) => {
+//         totalPrice.push(price.price)
+//     });
+//     console.log(totalPrice.sort());
+    
+    
+    
+// }
+
 // Lode Pet Detail
 const petDetail = async (id) => {
     // console.log(id);
@@ -212,7 +243,7 @@ const displayPetDetail = (petCard) => {
 
 
 // Display all pets
-const displayAllPets = (categories) => {
+const displayAllPets = (categories) => {    
     const petContainer = document.getElementById('pet_card');
     petContainer.innerHTML = '';
 
@@ -277,5 +308,6 @@ const displayAllPets = (categories) => {
     
 }
 
-lodePets();
-loadPetCategory();
+// lodePets();
+// loadPetCategory();
+sort()
